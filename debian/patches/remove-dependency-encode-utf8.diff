@@ -1,0 +1,37 @@
+From b9c260d8a3f2a4e916748de028080f47a2a27649 Mon Sep 17 00:00:00 2001
+From: Torben Neufeldt <torbenneufeldt@gmail.com>
+Date: Thu, 29 Sep 2022 09:42:14 +0200
+Subject: Remove encode-utf8
+
+
+diff --git a/lib/core/byte-data.js b/lib/core/byte-data.js
+index 289a601..d562fcc 100644
+--- a/lib/core/byte-data.js
++++ b/lib/core/byte-data.js
+@@ -1,9 +1,12 @@
+-const encodeUtf8 = require('encode-utf8')
+ const Mode = require('./mode')
+ 
+ function ByteData (data) {
+   this.mode = Mode.BYTE
+-  this.data = new Uint8Array(encodeUtf8(data))
++  if (typeof (data) === 'string') {
++    this.data = new TextEncoder().encode(data)
++  } else {
++    this.data = new Uint8Array(data)
++  }
+ }
+ 
+ ByteData.getBitsLength = function getBitsLength (length) {
+diff --git a/package.json b/package.json
+index 03f589a..276817c 100644
+--- a/package.json
++++ b/package.json
+@@ -39,7 +39,6 @@
+   },
+   "dependencies": {
+     "dijkstrajs": "^1.0.1",
+-    "encode-utf8": "^1.0.3",
+     "pngjs": "^5.0.0",
+     "yargs": "^15.3.1"
+   },
