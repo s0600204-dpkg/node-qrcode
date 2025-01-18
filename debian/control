@@ -8,6 +8,10 @@ Build-Depends:
  dh-sequence-nodejs,
  node-dijkstrajs,
  node-pngjs,
+ node-rollup-plugin-babel,
+ node-rollup-plugin-commonjs,
+ node-rollup-plugin-node-resolve,
+ node-rollup-plugin-terser,
  node-yargs,
  nodejs,
  rollup
