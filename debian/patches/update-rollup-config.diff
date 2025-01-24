@@ -1,8 +1,8 @@
 diff --git a/rollup.config.js b/rollup.config.js
-index 7a7a443..0c6e40f 100644
+index 7a7a443..b47d2a2 100644
 --- a/rollup.config.js
 +++ b/rollup.config.js
-@@ -1,19 +1,19 @@
+@@ -1,19 +1,20 @@
 -import babel from 'rollup-plugin-babel'
 -import { terser } from 'rollup-plugin-terser'
 -import commonjs from '@rollup/plugin-commonjs'
@@ -20,7 +20,9 @@ index 7a7a443..0c6e40f 100644
 -export default [{
 +module.exports = [{
    input: 'lib/browser.js',
-   output: { file: 'build/qrcode.js', format: 'iife', name: 'QRCode', exports: 'named' },
+-  output: { file: 'build/qrcode.js', format: 'iife', name: 'QRCode', exports: 'named' },
++  output: { file: 'build/qrcode.js', format: 'iife', name: 'QRCode', exports: 'named', globals: { dijkstrajs: 'dijkstrajs' } },
++  external: ['dijkstrajs'],
    plugins: [commonjs(), resolve(), babel(babelConfig), terser()]
  }, {
    input: 'helper/to-sjis-browser.js',
