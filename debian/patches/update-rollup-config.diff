@@ -1,8 +1,8 @@
 diff --git a/rollup.config.js b/rollup.config.js
-index 7a7a443..b47d2a2 100644
+index 7a7a443..081e7a6 100644
 --- a/rollup.config.js
 +++ b/rollup.config.js
-@@ -1,19 +1,20 @@
+@@ -1,19 +1,23 @@
 -import babel from 'rollup-plugin-babel'
 -import { terser } from 'rollup-plugin-terser'
 -import commonjs from '@rollup/plugin-commonjs'
@@ -18,15 +18,19 @@ index 7a7a443..b47d2a2 100644
  }
  
 -export default [{
++const resolveConfig = {
++  modulePaths: ['/usr/share/nodejs']
++}
++
 +module.exports = [{
    input: 'lib/browser.js',
--  output: { file: 'build/qrcode.js', format: 'iife', name: 'QRCode', exports: 'named' },
-+  output: { file: 'build/qrcode.js', format: 'iife', name: 'QRCode', exports: 'named', globals: { dijkstrajs: 'dijkstrajs' } },
-+  external: ['dijkstrajs'],
-   plugins: [commonjs(), resolve(), babel(babelConfig), terser()]
+   output: { file: 'build/qrcode.js', format: 'iife', name: 'QRCode', exports: 'named' },
+-  plugins: [commonjs(), resolve(), babel(babelConfig), terser()]
++  plugins: [commonjs(), resolve(resolveConfig), babel(babelConfig), terser()]
  }, {
    input: 'helper/to-sjis-browser.js',
 -  output: { file: 'build/qrcode.tosjis.js', format: 'iife', exports: 'none' },
+-  plugins: [commonjs(), resolve(), babel(babelConfig), terser()]
 +  output: { file: 'build/qrcode.tosjis.js', format: 'iife', exports: 'default' },
-   plugins: [commonjs(), resolve(), babel(babelConfig), terser()]
++  plugins: [commonjs(), resolve(resolveConfig), babel(babelConfig), terser()]
  }]

@@ -1,3 +1,10 @@
+node-qrcode (1.5.0-2) UNRELEASED; urgency=medium
+
+  * Patch the path to global modules into rollup's config
+
+ -- s0600204 <dev@s0600204>  Sat, 25 Jan 2025 20:55:00 +0000
+
+
 node-qrcode (1.5.0-1) UNRELEASED; urgency=medium
 
   * Initial packaging.
